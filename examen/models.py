@@ -3,11 +3,25 @@ from django.contrib.auth.models import User
 
 class Materia(models.Model):
     id = models.AutoField(primary_key=True)
+    METODOS_EVALUACION = [
+        ('ORAL', 'Oral'),
+        ('ESCRITO', 'Escrito teórico'),
+        ('PRACTICO', 'Práctico'),
+        ('TEORICO_PRACTICO', 'Teórico-Práctico'),
+    ]
+    
     nombre = models.CharField(max_length=100, null=False, blank=False)
     descripcion = models.TextField(blank=True, null=True)
     creditos = models.IntegerField(default=3)
     semestre = models.IntegerField(null=False, blank=False)
     docente = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
+    metodo_evaluacion = models.CharField(
+        max_length=20,
+        choices=METODOS_EVALUACION,
+        null=False,
+        blank=False
+    )
+    metodologia = models.TextField(max_length=512, null=False, blank=False)
 
     def __str__(self):
         return self.nombre
