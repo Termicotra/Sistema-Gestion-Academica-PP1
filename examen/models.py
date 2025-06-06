@@ -32,7 +32,7 @@ class Horario(models.Model):
     dia_semana = models.CharField(max_length=3, choices=DIAS_SEMANA, null=False, blank=False)
     hora_inicio = models.TimeField(null=False, blank=False)
     hora_fin = models.TimeField(null=False, blank=False)
-    aula = models.CharField(max_length=80, null=False, blank=False)
+    aula = models.CharField(max_length=100, null=False, blank=False)
 
     def __str__(self):
         return f"{self.materia} - {self.get_dia_semana_display()} {self.hora_inicio} a {self.hora_fin}"
